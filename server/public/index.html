@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,26 @@
     <script src="scripts/scripts.js"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
-    <div id="container"></div>
+    <h1>To do list</h1>
+    <div id="masterContainer">
+        <div id="inputContainer">
+            <input type="text" id="task" value="" placeholder="Task Name">
+            <input type="text" id="description" value="" placeholder="Description">
+            <select name="" id="status">
+                <option value=""></option>
+                <option value="onGoing">On Going</option>
+                <option value="completed">Completed</option>
+            </select>
+            <button type="button" id="addButton">Add Task</button>
+        </div>
+
+        <div id="listItemContainer">
+
+        </div>
+
+    </div>
 </body>
+
 </html>
