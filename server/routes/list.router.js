@@ -25,8 +25,12 @@ pool.on('error', (error) =>{
 
 listRouter.get('/', (req,res)=>{
     console.log('in get route');
-    let queryString = `SELECT * from  "list_items" ORDER BY "id" ASC`
-    pool.query 
+    let queryString = `SELECT * from  "list_items" ORDER BY "id" DESC`
+    pool.query(queryString).then((result) => {
+        res.send(result.rows);
+    }).catch((err) => {
+        res.sendStatus(500);
+    })
 })
 
 listRouter.post('/', (req, res) =>{
