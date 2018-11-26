@@ -80,6 +80,7 @@ function displayToDo(response) {
     `);
         if (toDo.status === 'completed') {
             tableRow.addClass('done');
+            
         }
         el.append(tableRow);
         tableRow.data('id', toDo.id);

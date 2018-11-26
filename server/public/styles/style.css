@@ -1,3 +1,19 @@
 .done {
     background-color: aquamarine;
 }
+
+#buttonDiv {
+    display: inline-block;
+}
+
+h1 {
+    font-family: Georgia;
+    text-align: center;
+}
+
+#inputContainer {
+    width: 60%;
+    margin-left: 30%;
+margin-right: 30%
+
+}
