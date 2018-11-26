@@ -35,6 +35,8 @@ function clickListener() {
 
     })
     $('#listItemContainer').on('click', '.deleteButton', deleteToDo);
+    $('#listItemContainer').on('click', '.editButton', editFill);
+    $('#inputContainer').on('click', '#updateButton', editToDo);
 } // end add task
 
 function emptyInputs() {
@@ -100,4 +102,43 @@ function deleteToDo() {
 
     })
 
+}
+
+let updateID;
+
+function editToDo (params) {
+    console.log('in edit');
+    // let rowToEdit = $(this).parent().parent().data('id');
+    let toDoToSend = {
+        task: $('#task').val(),
+        description: $('#description').val(),
+        status: $('#status').val()
+
+    }
+    $.ajax({
+        method: 'PUT',
+        url: `/list/${updateID}`,
+        data: toDoToSend
+    }).then(function(response){
+        console.log(response);
+        $('#buttonDiv').empty();
+        $('#buttonDiv').append(`<button type="button" id="addButton">Add Task</button>`)
+        emptyInputs();
+        getTasks();
+    }).catch(function(err){
+        console.log(err);
+        
+    })
+}
+
+function editFill() {
+    console.log('filling');
+    let toDo = $(this).parent().parent().data('object');
+    updateID = toDo.id;
+    $('#task').val(toDo.task);
+    $('#description').val(toDo.description);
+    $('#status').val(toDo.status);
+
+    $('#buttonDiv').empty();
+    $('#buttonDiv').append(`<button type="button" id="updateButton">Update Task</button>`)
 }

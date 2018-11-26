@@ -31,7 +31,7 @@ listRouter.get('/', (req,res)=>{
     }).catch((err) => {
         res.sendStatus(500);
     })
-})
+});
 
 listRouter.post('/', (req, res) =>{
     console.log('in POST Route');
@@ -57,6 +57,23 @@ listRouter.delete('/:id', (req, res)=>{
     })
     
     
-})
+});
+
+listRouter.put('/:id', (req, res) => {
+    console.log('in put route');
+    let toDO = req.body;
+    console.log(toDO);
+    let toDoID = req.params.id;
+    console.log(toDoID);
+    
+    let queryString = `UPDATE "list_items" SET "task" =$1, "description" = $2, "status" = $3 WHERE "id" = $4;`; 
+    pool.query(queryString, [toDO.task, toDO.description ,toDO.status , toDoID]).then(() => {
+        res.sendStatus(201);
+    }).catch((err) => {
+        res.sendStatus(500);
+    })
+
+
+});
 
 module.exports = listRouter;
