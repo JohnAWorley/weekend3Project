@@ -34,6 +34,7 @@ function clickListener() {
 
 
     })
+    $('#listItemContainer').on('click', '.deleteButton', deleteToDo);
 } // end add task
 
 function emptyInputs() {
@@ -72,12 +73,31 @@ function displayToDo(response) {
         <td>${toDo.description}</td>
         <td>${toDo.status}</td>
         <td><button class="deleteButton">Delete</button></td>
+        <td><button class="editButton">edit</button></td>
     </tr>
     `);
         el.append(tableRow);
+        tableRow.data('id', toDo.id);
         tableRow.data('object', toDo);
-        
+
 
     }
+
+}
+
+function deleteToDo() {
+    console.log('in delete');
+    let rowToDelete = $(this).parent().parent().data('id');
+    console.log(rowToDelete);
+    $.ajax({
+        method: 'DELETE',
+        url: `/list/${rowToDelete}`
+    }).then(function (response) {
+        console.log(response);
+        getTasks();
+    }).catch(function (err) {
+        console.log(err);
+
+    })
 
 }

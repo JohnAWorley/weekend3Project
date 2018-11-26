@@ -45,4 +45,18 @@ listRouter.post('/', (req, res) =>{
     
 });
 
+listRouter.delete('/:id', (req, res)=>{
+    console.log('in delete route');
+    let rowToDelete = req.params.id;
+    console.log(rowToDelete);
+    let queryString = `DELETE FROM "list_items" WHERE "id" = $1; `
+    pool.query(queryString,[rowToDelete] ).then(() =>{
+        res.sendStatus(201);
+    }).catch((err) =>{
+        res.sendStatus(500);
+    })
+    
+    
+})
+
 module.exports = listRouter;
