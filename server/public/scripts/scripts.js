@@ -78,6 +78,9 @@ function displayToDo(response) {
         <td><button class="editButton">edit</button></td>
     </tr>
     `);
+        if (toDo.status === 'completed') {
+            tableRow.addClass('done');
+        }
         el.append(tableRow);
         tableRow.data('id', toDo.id);
         tableRow.data('object', toDo);
